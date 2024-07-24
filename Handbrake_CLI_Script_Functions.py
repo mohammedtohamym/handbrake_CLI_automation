@@ -24,7 +24,8 @@ def Convert_with_handbrake_CLI(root, handbrake, preset):
                     if file.endswith(".mkv"):
                         file = file.removesuffix(".mkv")+ ".mp4"
                     converted_path = subdir + '\\converted\\' + file
-                    
+                    if os.path.isfile(converted_path):
+                        os.unlink(converted_path)
                     #handbrake command
                     handbrake_command = [handbrake,
                     "-i",f"{file_path}", "-o",f"{converted_path}",
