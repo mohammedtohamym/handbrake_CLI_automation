@@ -12,8 +12,11 @@ directories = []
 for subdir, dirs, files in os.walk(rootdir):
     directories.append(subdir)
 for item in directories:
+    this_is_converted_dir = item.endswith('converted')
     converted_dir = item + r'\converted'
-    os.mkdir(converted_dir)
+    converted_dir_existes = os.path.isdir(converted_dir)
+    if not converted_dir_existes and not this_is_converted_dir:
+        os.mkdir(converted_dir)
 
 # perform the conversion on files only in the original folders
 # and put them in the respective 'converted' subfolder
