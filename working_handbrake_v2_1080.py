@@ -20,8 +20,11 @@ for item in directories:
 for subdir, dirs, files in os.walk(rootdir):
     if not subdir.endswith('converted'):
         for file in files:
-            if file.endswith('.mp4'):
+            if file.endswith([".mp4",".mkv"]):
+                #add if statemtent here to replace mkv with mp4
                 file_path = subdir + '\\' + file
+                if file.endswith(".mkv"):
+                    file = file.removesuffix(".mkv")+ ".mp4"
                 converted_path = subdir + '\\converted\\' + file
                 
                 #handbrake command
@@ -36,7 +39,7 @@ for subdir, dirs, files in os.walk(rootdir):
 for subdir, dirs, files in os.walk(rootdir):
     if not subdir.endswith('converted'):
         for file in files:
-            if file.endswith(".mp4"):
+            if file.endswith([".mp4",".mkv"]):
                 file_path = subdir + '\\' + file
                 os.unlink(file_path)
 
