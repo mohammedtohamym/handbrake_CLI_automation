@@ -4,13 +4,22 @@ import json
 
 def Converions_Init(root):
     Create_converted_dirs(root)
-    with open('data.json', 'w') as file:
+    with open(root+r'\data.json', 'w') as data_file:
         data = {'converted_files':[]}
-        json.dump(data, file)
-    
-# def Conversion_history():
-#     os.
+        json.dump(data, data_file)
 
+def Update_conversion_history(root,converted_file):
+    with open(root+r'\data.json', 'r+') as data_file:
+        history = json.load(data_file)
+        history['files'].append(converted_file)
+        data_file.seek(0)
+        json.dump(history,data_file)
+
+def Check_history(root, converted_file):
+    with open(root+r'\data.json', 'r') as data_file:
+        history = json.load(data_file)
+        if converted_file in history:
+            return True
 
 def Create_converted_dirs(root):
     # make a folder named converted inside all of the folders in root directorey
@@ -34,6 +43,8 @@ def Convert_with_handbrake_CLI(root, handbrake, preset):
                     if file.endswith(".mkv"):
                         file = file.removesuffix(".mkv")+ ".mp4"
                     converted_path = subdir + '\\converted\\' + file
+                    if Check_history(root,converted_path):
+                        continue
                     if os.path.isfile(converted_path):
                         os.unlink(converted_path)
                     #handbrake command
@@ -41,6 +52,7 @@ def Convert_with_handbrake_CLI(root, handbrake, preset):
                     "-i",f"{file_path}", "-o",f"{converted_path}",
                     "--preset" ,f"{preset}" ,"--crop-mode" ,"none"]
                     subprocess.run(handbrake_command, shell=True)
+                    Update_conversion_history(root,converted_path)
 
 def Delete_original_files(root):
     for subdir, dirs, files in os.walk(root):
