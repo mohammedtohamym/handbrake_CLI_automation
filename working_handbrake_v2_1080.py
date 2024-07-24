@@ -7,7 +7,7 @@ preset_720 = "Very Fast 720p30"
 preset_1080 = "Very Fast 1080p30"
 
 
-hpf.Create_converted_dirs(rootdir)
+hpf.Converions_Init(rootdir)
 # perform the conversion on files only in the original folders
 # and put them in the respective 'converted' subfolder
 hpf.Convert_with_handbrake_CLI(rootdir, handbrake_dir, preset_1080)

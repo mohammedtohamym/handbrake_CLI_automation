@@ -1,9 +1,13 @@
 import os
 import subprocess
+import json
 
-
-# def Converions_Init():
-#     open()
+def Converions_Init(root):
+    Create_converted_dirs(root)
+    with open('data.json', 'w') as file:
+        data = {'converted_files':[]}
+        json.dump(data, file)
+    
 # def Conversion_history():
 #     os.
 
