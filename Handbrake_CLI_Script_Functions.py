@@ -4,9 +4,10 @@ import json
 
 def Converions_Init(root):
     Create_converted_dirs(root)
-    with open(root+r'\data.json', 'w') as data_file:
-        data = {'converted_files':[]}
-        json.dump(data, data_file)
+    if not os.path.isfile(root+r'\data.json'):
+        with open(root+r'\data.json', 'w') as data_file:
+            data = {'converted_files':[]}
+            json.dump(data, data_file)
 
 def Update_conversion_history(root,converted_file):
     with open(root+r'\data.json', 'r+') as data_file:
@@ -18,7 +19,7 @@ def Update_conversion_history(root,converted_file):
 def Check_history(root, converted_file):
     with open(root+r'\data.json', 'r') as data_file:
         history = json.load(data_file)
-        if converted_file in history:
+        if converted_file in history['converted_files']:
             return True
 
 def Create_converted_dirs(root):
@@ -73,3 +74,4 @@ def Move_converted_files_and_delete_converted_dirs(root):
                 else:
                     os.unlink(before_move_path)
             os.rmdir(subdir)
+            os.unlink(root+r'\data.json')
