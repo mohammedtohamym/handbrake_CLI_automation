@@ -11,7 +11,7 @@ def Converions_Init(root):
 def Update_conversion_history(root,converted_file):
     with open(root+r'\data.json', 'r+') as data_file:
         history = json.load(data_file)
-        history['files'].append(converted_file)
+        history['converted_files'].append(converted_file)
         data_file.seek(0)
         json.dump(history,data_file)
 
