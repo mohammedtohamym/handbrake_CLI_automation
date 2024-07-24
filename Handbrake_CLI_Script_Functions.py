@@ -2,6 +2,12 @@ import os
 import subprocess
 
 
+# def Converions_Init():
+#     open()
+# def Conversion_history():
+#     os.
+
+
 def Create_converted_dirs(root):
     # make a folder named converted inside all of the folders in root directorey
     directories = []
