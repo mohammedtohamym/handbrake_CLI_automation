@@ -1,6 +1,19 @@
 import os
 import subprocess
 
+def Move_converted_file_and_delete_converted(root):
+    for subdir, dirs, files in os.walk(root):
+        if subdir.endswith('converted'):
+            for file in files:
+                before_move_path = subdir + '\\' + file
+                if file.endswith(".mp4"):
+                    after_move_path = subdir.removesuffix('\\converted') + '\\' + file
+                    os.rename(before_move_path , after_move_path)
+                else:
+                    os.unlink(before_move_path)
+            os.rmdir(subdir)
+
+
 rootdir = r"O:\handbrake CLI"
 handbrake_dir = r"O:\C drive\downloads\Compressed\HandBrakeCLI-1.8.1-win-x86_64\folder1\HandBrakeCLI.exe"
 
@@ -33,7 +46,7 @@ for subdir, dirs, files in os.walk(rootdir):
                 #handbrake command
                 handbrake_command = [handbrake_dir,
                 "-i",f"{file_path}", "-o",f"{converted_path}",
-                "--preset" ,f"{preset_1080}" ,"--crop-mode" ,"none"]
+                "--preset" ,f"{preset_720}" ,"--crop-mode" ,"none"]
                 subprocess.run(handbrake_command, shell=True)
 
 
@@ -46,22 +59,4 @@ for subdir, dirs, files in os.walk(rootdir):
                 file_path = subdir + '\\' + file
                 os.unlink(file_path)
 
-
-for subdir, dirs, files in os.walk(rootdir):
-    if subdir.endswith('converted'):
-        for file in files:
-            before_move_path = subdir + '\\' + file
-            if file.endswith(".mp4"):
-                # print(subdir)
-                
-                # print(before_move_path)
-
-                after_move_path = subdir.removesuffix('\\converted') + '\\' + file
-                # print(after_move_path)
-                
-                os.rename(before_move_path , after_move_path)
-            else:   
-                os.unlink(before_move_path)
-        os.rmdir(subdir)
-
-
+Move_converted_file_and_delete_converted(rootdir)
