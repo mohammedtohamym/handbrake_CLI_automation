@@ -77,5 +77,6 @@ def Move_converted_files_and_delete_converted_dirs(root):
             os.unlink(root+r'\data.json')
 
 def Mark_as_finished(root):
-    with open(root+r'\handbrake done.txt', "w") as file:
-        file.write("hand brake done")
+    if not os.path.isfile(root+r'\handbrake done.txt'):
+        with open(root+r'\handbrake done.txt', "w") as file:
+            file.write("hand brake done")
