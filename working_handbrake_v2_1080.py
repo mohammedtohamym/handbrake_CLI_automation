@@ -1,7 +1,7 @@
 import Handbrake_CLI_Script_Functions as hpf
 import os
 
-rootdir = r"U:\placeholder\Udemy - 50 Projects In 50 Days - HTML, CSS & JavaScript 2020-11"
+rootdir = r"O:\handbrake CLI"
 handbrake_dir = r"O:\C drive\downloads\Compressed\HandBrakeCLI-1.8.1-win-x86_64\folder1\HandBrakeCLI.exe"
 
 preset_720 = "Very Fast 720p30"

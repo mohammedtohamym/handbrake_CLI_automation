@@ -43,6 +43,8 @@ def Convert_with_handbrake_CLI(root, handbrake, preset):
                     file_path = subdir + '\\' + file
                     if file.endswith(".mkv"):
                         file = file.removesuffix(".mkv")+ ".mp4"
+                    if file.endswith(".ts"):
+                        file = file.removesuffix(".ts")+ ".mp4"
                     converted_path = subdir + '\\converted\\' + file
                     if Check_history(root,converted_path):
                         continue
