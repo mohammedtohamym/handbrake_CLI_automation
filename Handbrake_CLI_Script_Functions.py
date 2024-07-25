@@ -38,7 +38,7 @@ def Convert_with_handbrake_CLI(root, handbrake, preset):
     for subdir, dirs, files in os.walk(root):
         if not subdir.endswith('converted'):
             for file in files:
-                if file.endswith((".mp4",".mkv")):
+                if file.endswith((".mp4",".mkv",".ts")):
                     #add if statemtent here to replace mkv with mp4
                     file_path = subdir + '\\' + file
                     if file.endswith(".mkv"):
@@ -61,7 +61,7 @@ def Delete_original_files(root):
     for subdir, dirs, files in os.walk(root):
         if not subdir.endswith('converted'):
             for file in files:
-                if file.endswith((".mp4",".mkv")):
+                if file.endswith((".mp4",".mkv",".ts")):
                     file_path = subdir + '\\' + file
                     os.unlink(file_path)
 
