@@ -2,11 +2,11 @@ import os
 import subprocess
 import json
 
-def Converions_Init(root):
+def Converions_Init(root, preset):
     Create_converted_dirs(root)
     if not os.path.isfile(root+r'\data.json'):
         with open(root+r'\data.json', 'w') as data_file:
-            data = {'converted_files':[]}
+            data = {'converted_files':['handbrake' +f'{preset}']}
             json.dump(data, data_file)
 
 def Update_conversion_history(root,converted_file):
@@ -73,10 +73,12 @@ def Move_converted_files_and_delete_converted_dirs(root):
                     os.rename(before_move_path , after_move_path)
                 else:
                     os.unlink(before_move_path)
-            os.rmdir(subdir)
-            os.unlink(root+r'\data.json')
+            os.rmdir(subdir)  
 
 def Mark_as_finished(root):
     if not os.path.isfile(root+r'\handbrake done.txt'):
         with open(root+r'\handbrake done.txt', "w") as file:
             file.write("hand brake done")
+
+def Detele_convertsion_history(root):
+    os.unlink(root+r'\data.json')
