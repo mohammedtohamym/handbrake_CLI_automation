@@ -1,7 +1,7 @@
 import Handbrake_CLI_Script_Functions as hpf
 import os
 
-rootdir = r"O:\handbrake CLI"
+rootdir = r"O:\handbrake CLI\smaller"
 handbrake_dir = r"O:\C drive\downloads\Compressed\HandBrakeCLI-1.8.1-win-x86_64\folder1\HandBrakeCLI.exe"
 
 preset_720 = "Very Fast 720p30"
