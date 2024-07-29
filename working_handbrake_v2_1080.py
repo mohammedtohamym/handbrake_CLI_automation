@@ -1,7 +1,7 @@
 import Handbrake_CLI_Script_Functions as hpf
 import os
 
-rootdir = r"O:\handbrake CLI\Udemy - Flutter BLoC TDD & Clean Architecture  Project Based 2023-10"
+rootdir = r"U:\downloads\Domestika_Advanced_Papercraft_Techniques_Designing_with_Paper_2024-7_Downloadly.ir.part1\Domestika - Advanced Papercraft Techniques Designing with Paper 2024-7"
 handbrake_dir = r"O:\C drive\downloads\Compressed\HandBrakeCLI-1.8.1-win-x86_64\folder1\HandBrakeCLI.exe"
 
 preset_720 = "Very Fast 720p30"
