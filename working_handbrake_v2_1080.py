@@ -19,7 +19,15 @@ elif user_input_preset == '2':
 else:
     print("invalid input")
     exit()
-    
+user_input_frame_rate_warning = input("this conversion will result in 30fps only\n press 0 to continue or 9 to abort")
+if user_input_frame_rate_warning == '0':
+    print("starting..")
+elif user_input_frame_rate_warning == '9':
+    print("aborting ..")
+    exit()
+else:
+    print("invalid input")
+    exit()
 hpf.Converions_Init(rootdir, preset)
 # perform the conversion on files only in the original folders
 # and put them in the respective 'converted' subfolder
