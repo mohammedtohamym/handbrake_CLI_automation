@@ -34,7 +34,7 @@ def Create_converted_dirs(root):
         if not converted_dir_existes and not this_is_converted_dir:
             os.mkdir(converted_dir)
 
-def Convert_with_handbrake_CLI(root, handbrake, preset):
+def Convert_with_handbrake_CLI(root, handbrake, preset, frame_rate):
     for subdir, dirs, files in os.walk(root):
         if not subdir.endswith('converted'):
             for file in files:
@@ -53,7 +53,7 @@ def Convert_with_handbrake_CLI(root, handbrake, preset):
                     #handbrake command
                     handbrake_command = [handbrake,
                     "-i",f"{file_path}", "-o",f"{converted_path}",
-                    "--preset" ,f"{preset}" ,"--crop-mode" ,"none"]
+                    "--preset" ,f"{preset}" ,"--rate", f"{frame_rate}","--crop-mode" ,"none"]
                     subprocess.run(handbrake_command, shell=True)
                     Update_conversion_history(root,converted_path)
 
